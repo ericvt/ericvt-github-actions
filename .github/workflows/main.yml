@@ -9,3 +9,11 @@ jobs:
     - uses: ./action-a
       env:
         MY_NAME: "Mona"
+  welcome:
+    name: Hello Eric
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./action-b
+      env:
+        MY_NAME: "Eric"  
