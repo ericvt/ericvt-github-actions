@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
       - name: init
-        uses: actions/checkout@v1
+        uses: actions/hello-world-javascript-action@v1
       - name: kickoff
         uses: ./action-a
       - name: echo the greeting time
