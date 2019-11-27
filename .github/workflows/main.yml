@@ -5,7 +5,11 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest    
     steps:
-    - uses: actions/checkout@v1
-    - uses: ./action-a
-      env:
-        MY_NAME: "Mona"
+      - name: init
+        uses: actions/checkout@v1
+      - name: kickoff
+        uses: ./action-a
+      - name: echo the greeting time
+        run: echo ' The time was ${{steps.hello.outputs.time}}.'
+        env:
+         MY_NAME: "Mona"
