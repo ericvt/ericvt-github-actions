@@ -1,4 +1,4 @@
-name: WorkflowA
+name: WorkflowB
 on: push
 jobs:
   build:
