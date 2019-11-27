@@ -1,15 +1,17 @@
-name: A workflow for my Hello World file
+name: WorkflowA
 on: push
 jobs:
   build:
-    name: Hello world action
+    name: This is workflow A
     runs-on: ubuntu-latest    
     steps:
-      - name: init
+      - name: checkout step
+        uses: actions/checkout@v1
+      - name: Init step
         uses: actions/hello-world-javascript-action@v1
-      - name: kickoff
+      - name: kickoff step
         uses: ./action-a
-      - name: echo the greeting time
+      - name: Greeting step
         run: echo ' The time was ${{steps.hello.outputs.time}}.'
         env:
-         MY_NAME: "Mona"
+         MY_NAME: "ericvt"
