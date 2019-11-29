@@ -10,7 +10,8 @@ targetFiles=[]
 
 def main():
     global scriptFile, targetFilePath, targetFiles
-    found=0
+    headIndex=0
+    scriptFound= False
     try:
         parse_args()
     except TypeError as e:
@@ -27,14 +28,23 @@ def main():
                         contents = target_file.readlines()
                         for index, line in enumerate(contents): 
                             if line.startswith('<head>'.lower()):
-                                index+=1 #place pointer at the next line after the header
+                                headIndex=index # track the line# and check the following line
+                            elif line.startswith('<script '.lower()) and headIndex==(index-1):
+                                scriptFound=True
+                                break
+                            elif headIndex!=0:
+                                #index+=1 #place pointer at the next line after the header
                                 for i, aline in enumerate (scriptLines):    
-                                  contents.insert(index+i, aline)  
+                                    contents.insert(index+i, aline)  
                                 target_file.seek(0)  
                                 target_file.writelines(contents)  
-                                found=1
-                        if found==0:
-                            print ('\n No <head> tag found, not able to add script')          
+                                break
+                        if headIndex==0:
+                            print ('No <head> tag found not able to add script') 
+                        elif scriptFound:
+                            print ('<script> already present') 
+                        else:
+                            print ('<script> successfully added') 
                 except FileNotFoundError as e:
                     print (f'Error:{e}') 
         else:
@@ -51,9 +61,4 @@ def parse_args(*args):
     for i in range(3, numargs+1): #record all the files to be edited
         targetFiles.append (sys.argv[i])
         
-
-        
-
-    
-    
 if __name__ == '__main__': main()
