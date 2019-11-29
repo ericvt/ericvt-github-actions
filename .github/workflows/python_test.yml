@@ -11,4 +11,4 @@ jobs:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - uses: ericvt/casaxuulsite@master  
-    - run: python3 insertScript.py
+    - run: python3 insertScript.py nfogix . index.html
