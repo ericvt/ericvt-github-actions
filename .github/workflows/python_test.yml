@@ -10,5 +10,14 @@ jobs:
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-    - run: python3 insertScript.py nfogix.js . index.html
-    - run: touch temp.html
+    - name: running Python script
+      run: python3 insertScript.py nfogix.js . index.html
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
