@@ -11,7 +11,7 @@ jobs:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - name: running Python script
-      run: python3 insertScript.py nfogix.js . index.html
+      run: python3 insertScript.py nfogix.js . files/index.html
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
