@@ -10,8 +10,6 @@ targetFiles=[]
 
 def main():
     global scriptFile, targetFilePath, targetFiles
-    headIndex=0
-    scriptFound= False
     try:
         parse_args()
     except TypeError as e:
@@ -22,6 +20,8 @@ def main():
             scriptHandle = open(scriptFile, "r")
             scriptLines = scriptHandle.readlines()
             for i, file in enumerate(targetFiles):
+                headIndex=0
+                scriptFound= False
                 try:
                     with open(targetFilePath+'/'+file, 'r+') as target_file:
                         print (f"Processing ....:{targetFilePath+'/'+file}")
