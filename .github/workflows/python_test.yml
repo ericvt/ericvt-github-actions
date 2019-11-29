@@ -1,4 +1,4 @@
-name: InseertScript
+name: InsertScript
 on: push
 jobs:
   build:
